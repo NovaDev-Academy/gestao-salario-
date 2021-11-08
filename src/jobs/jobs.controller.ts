@@ -1,5 +1,7 @@
-import { Controller, Get, Post, Put, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param } from '@nestjs/common';
 import { JobsService } from './jobs.service';
+import { JobDTO } from './data/job.dto';
+import { Job } from './interfaces/job.interface';
 
 @Controller('jobs')
 export class JobsController {
@@ -11,8 +13,8 @@ export class JobsController {
   }
 
   @Get(':id')
-  findOneById(): string {
-    return 'finded user id or data jobs';
+  findOneById(@Param('id') id): Promise<Job> {
+    return this.jobservice.find(id);
   }
 
   @Post(':id')

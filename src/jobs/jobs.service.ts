@@ -7,6 +7,10 @@ import { InjectModel } from '@nestjs/mongoose';
 export class JobsService {
   constructor(@InjectModel('Job') private readonly jobModel: Model<Job>) {}
 
+//   async findAll(): Promise<Job> {
+//     return await this.jobModel.find();
+//   }
+
   async find(id: string): Promise<Job> {
     return await this.jobModel.findOne({ _id: id });
   }
@@ -23,5 +27,4 @@ export class JobsService {
   async delete(id: string): Promise<Job>{
     return await this.jobModel.findByIdAndRemove(id);
   }
-
 }
