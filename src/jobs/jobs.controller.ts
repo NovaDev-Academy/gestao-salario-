@@ -7,7 +7,6 @@ import { Job } from './interfaces/job.interface';
 export class JobsController {
   constructor(private readonly jobservice: JobsService) {}
 
-  @Get()
   findAll(): string {
     return 'find all users jobs';
   }

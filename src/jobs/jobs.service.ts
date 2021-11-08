@@ -5,11 +5,11 @@ import { InjectModel } from '@nestjs/mongoose';
 
 @Injectable()
 export class JobsService {
-  constructor(@InjectModel('Job') private readonly jobModel: Model<Job>) {}
+  constructor(@InjectModel('job') private readonly jobModel: Model<Job>) {}
 
-//   async findAll(): Promise<Job> {
-//     return await this.jobModel.find();
-//   }
+  // async findAll(job: Job): Promise<Job> {
+  //   return await this.jobModel.find(job);
+  // }
 
   async find(id: string): Promise<Job> {
     return await this.jobModel.findOne({ _id: id });
