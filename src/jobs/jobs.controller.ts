@@ -8,12 +8,16 @@ import {
   Param,
   HttpException,
   HttpStatus,
+  UseFilters,
 } from '@nestjs/common';
 import { JobsService } from './jobs.service';
 import { JobDTO } from './data/job.dto';
 import { Job } from './interfaces/job.interface';
+// import { HttpExceptionFilter } from '../filters/http-exception.filter';
+import { ValidationPipe } from '../pipes/validator.pipes';
 
 @Controller('jobs')
+// @UseFilters(HttpExceptionFilter)
 export class JobsController {
   constructor(private readonly jobservice: JobsService) {}
 
@@ -22,26 +26,21 @@ export class JobsController {
     return this.jobservice.findAll();
   }
 
-  // @Get(':id')
-  // findOneById(@Param('id') id): Promise<Job> {
-  //   return this.jobservice.find(id);
-  // }
-
   @Get(':id')
   findOneById(@Param('id') id): Promise<Job> {
     return this.jobservice
       .find(id)
       .then((result) => {
-      if (result) return result;
-        throw new HttpException('job not found', HttpStatus.NOT_FOUND);
+        if (result) return result;
+        throw new HttpException('ERROR', HttpStatus.NOT_FOUND);
       })
       .catch(() => {
-        throw new HttpException('job not found', HttpStatus.NOT_FOUND);
-    });
+        throw new HttpException('ERROR', HttpStatus.NOT_FOUND);
+      });
   }
 
   @Post()
-  create(@Body() JOB: JobDTO): Promise<Job> {
+  create(@Body(ValidationPipe) JOB: JobDTO): Promise<Job> {
     return this.jobservice.create(JOB);
   }
 

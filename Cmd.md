@@ -34,6 +34,8 @@ npm install --save mongoose
 ```
 ```bash
 npm install --save @nestjs/mongoose mongoose
+
+$ npm i --save class-validator class-transformer
 ```
 
 ### NOSQL ACESS
@@ -85,5 +87,44 @@ DTOS-
 
 
 
-Filter Exceptions (filtors de exceptios por requeste http)
+### Filter Exceptions (filtors de exceptios por requeste http)
 
+/**
+ * Exeption Filter em Express vs Nestjs  
+ *  Podem ser usados a nivel de metodos InJECTR dEP, controller InJECTR dEP , global CRIANDO NOVA ISNTANCIA
+ *  
+ * 
+  @Get(':id')
+  findOneById(@Param('id') id): Promise<Job> {
+    return this.jobservice.find(id);
+  }
+
+@Get(':id')
+findOneById(@Param('id') id): Promise<Job> {
+  return this.jobservice
+    .find(id)
+    .then((result) => {
+    if (result) return result;
+      throw new HttpException('job not found', HttpStatus.NOT_FOUND);
+    })
+    .catch(() => {
+      throw new HttpException('job not found', HttpStatus.NOT_FOUND);
+  });
+}
+
+// NO MAIN.TS
+
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+import { HttpExceptionFilter } from './filters/http-exception.filter';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  app.useGlobalFilters(new HttpExceptionFilter());
+  await app.listen(3000);
+}
+bootstrap();
+ */
+ #### Validation PIPES
+  
+4 escopos  (param, metodo, controller, global)
