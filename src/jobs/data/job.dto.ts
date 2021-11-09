@@ -1,4 +1,4 @@
-export class JobDTO{
-    readonly title: String;
-    readonly salary: Number;
+export class JobDTO {
+  readonly title: string;
+  readonly salary: number;
 }

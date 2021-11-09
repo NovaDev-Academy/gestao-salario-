@@ -49,6 +49,8 @@ mongodb+srv://mongoUser:mongoDATABASE@cluster0.9iihd.mongodb.net/myFirstDatabase
 
 mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false
 
+//mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false
+//mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false
 
 
 export const SERVER = {
@@ -62,9 +64,19 @@ export const SERVER = {
 }
 
 
+imports: [
+    MongooseModule.forRoot({
+       uri: 'mongodb://admin:admin@localhost:30000',
+       dbName: 'data'
+    }),
+  ]
+
 
 // import { JobsController } from './jobs/jobs.controller';
 // import { JobsService } from './jobs/jobs.service';
 // controllers: [AppController, JobsController],
 // providers: [AppService, JobsService],
 // MongooseModule.forRoot('mongodb://localhost:27017/jobs'),
+
+
+
