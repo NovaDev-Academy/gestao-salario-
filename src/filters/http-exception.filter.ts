@@ -11,7 +11,9 @@ export class HttpExceptionFilter implements ExceptionFilter {
     if (statusCode === 404) {
       return 'Recurso Nao Encontrado';
     } else if (statusCode === 500) {
-      return 'Erro Vindo do Servidor';
+      return 'Erro Vindo do Servidor | Internal server error';
+    } else if (statusCode === 401) {
+      return 'Erro Desconhecido';
     } else {
       return 'HTTP ERROR';
     }

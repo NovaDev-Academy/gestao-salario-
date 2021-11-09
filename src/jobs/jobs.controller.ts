@@ -9,15 +9,19 @@ import {
   HttpException,
   HttpStatus,
   UseFilters,
+  UsePipes,
 } from '@nestjs/common';
 import { JobsService } from './jobs.service';
 import { JobDTO } from './data/job.dto';
 import { Job } from './interfaces/job.interface';
 // import { HttpExceptionFilter } from '../filters/http-exception.filter';
-import { ValidationPipe } from '../pipes/validator.pipes';
+// import { ValidationsExceptionFilter } from 'src/filters/Validations-exception.filter';
+// import { ValidationPipe } from '../pipes/validator.pipes';
+import { JobData } from '../decorators/jobdata.decorator';
 
 @Controller('jobs')
 // @UseFilters(HttpExceptionFilter)
+// @UsePipes(ValidationPipe)
 export class JobsController {
   constructor(private readonly jobservice: JobsService) {}
 
@@ -39,8 +43,13 @@ export class JobsController {
       });
   }
 
+  // @Post()
+  // create(@Body() JOB: JobDTO): Promise<Job> {
+  //   return this.jobservice.create(JOB);
+  // }
+
   @Post()
-  create(@Body(ValidationPipe) JOB: JobDTO): Promise<Job> {
+  create(@JobData() JOB: JobDTO): Promise<Job> {
     return this.jobservice.create(JOB);
   }
 

@@ -128,3 +128,7 @@ bootstrap();
  #### Validation PIPES
   
 4 escopos  (param, metodo, controller, global)
+
+### Custom decorators etc ...  , 
+
+- passar dados de user a muitos endpoints
