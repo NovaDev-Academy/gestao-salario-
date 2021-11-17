@@ -20,7 +20,7 @@ export class ValidationsExceptionFilter implements ExceptionFilter {
       statusCode: status,
       timestamp: new Date().toISOString(),
       path: request.url,
-      description: 'Bad Request | Validations'
+      description: 'Bad Request | Validations!'
     });
   }
 }
