@@ -8,10 +8,7 @@ import {
 import { Request, Response } from 'express';
 @Catch(BadRequestException)
 export class ValidationsExceptionFilter implements ExceptionFilter {
-  mensageStatusCode(statusCode): string {
-    if (statusCode) return 'Bad Request';
-    return 'Not Bad Request';
-  }
+  
 
   catch(exception: HttpException, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
@@ -23,7 +20,7 @@ export class ValidationsExceptionFilter implements ExceptionFilter {
       statusCode: status,
       timestamp: new Date().toISOString(),
       path: request.url,
-      description: this.mensageStatusCode(status),
+      description: 'Bad Request | Validations'
     });
   }
 }

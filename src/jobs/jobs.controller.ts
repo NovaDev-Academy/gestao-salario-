@@ -16,7 +16,7 @@ import { JobDTO } from './data/job.dto';
 import { Job } from './interfaces/job.interface';
 // import { HttpExceptionFilter } from '../filters/http-exception.filter';
 // import { ValidationsExceptionFilter } from 'src/filters/Validations-exception.filter';
-// import { ValidationPipe } from '../pipes/validator.pipes';
+import { ValidationPipe } from '../pipes/validator.pipes';
 import { JobData } from '../decorators/jobdata.decorator';
 
 @Controller('jobs')
