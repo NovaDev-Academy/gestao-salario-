@@ -12,4 +12,12 @@ export class BonusService {
   async findBonusAll(): Promise<Bonus[]>{
     return await this.bonusModel.find();
   }
+
+  async find(id: string): Promise<Bonus>{
+    return await this.bonusModel.findOne({ _id: id });
+  }
+
+  async create(bonus: Bonus): Promise<Bonus> {
+    return await this.bonusModel.create(bonus);
+  }
 }
