@@ -21,7 +21,7 @@ import { JobData } from '../decorators/jobdata.decorator';
 
 @Controller('jobs')
 // @UseFilters(HttpExceptionFilter)
-// @UsePipes(ValidationPipe)
+@UsePipes(ValidationPipe)
 export class JobsController {
   constructor(private readonly jobservice: JobsService) {}
 

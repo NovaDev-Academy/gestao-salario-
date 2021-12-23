@@ -5,8 +5,7 @@ import { InjectModel } from '@nestjs/mongoose';
 @Injectable()
 export class BonusService {
   constructor(
-    @InjectModel('bonus')
-    private readonly bonusModel: Model<Bonus>,
+    @InjectModel('Bonus') private readonly bonusModel: Model<Bonus>,
   ) {}
 
   async findBonusAll(): Promise<Bonus[]> {
@@ -21,8 +20,8 @@ export class BonusService {
     return await this.bonusModel.create(bonus);
   }
 
-  async update(id: string, bonu: Bonus): Promise<Bonus>{
-    return await this.bonusModel.findByIdAndUpdate(id, bonu, { new: true });
+  async update(id: string, bonus: Bonus): Promise<Bonus> {
+    return await this.bonusModel.findByIdAndUpdate(id, bonus, { new: true });
   }
 
   async delete(id: string): Promise<Bonus> {
