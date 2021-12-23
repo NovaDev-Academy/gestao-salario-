@@ -9,15 +9,23 @@ export class BonusService {
     private readonly bonusModel: Model<Bonus>,
   ) {}
 
-  async findBonusAll(): Promise<Bonus[]>{
+  async findBonusAll(): Promise<Bonus[]> {
     return await this.bonusModel.find();
   }
 
-  async find(id: string): Promise<Bonus>{
+  async find(id: string): Promise<Bonus> {
     return await this.bonusModel.findOne({ _id: id });
   }
 
   async create(bonus: Bonus): Promise<Bonus> {
     return await this.bonusModel.create(bonus);
+  }
+
+  async update(id: string, bonu: Bonus): Promise<Bonus>{
+    return await this.bonusModel.findByIdAndUpdate(id, bonu, { new: true });
+  }
+
+  async delete(id: string): Promise<Bonus> {
+    return this.bonusModel.findByIdAndRemove(id);
   }
 }

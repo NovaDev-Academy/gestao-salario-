@@ -1,11 +1,11 @@
 import { IsNumber, IsString } from 'class-validator';
 export class BonusDTO{
-    @IsString()
+  @IsString()
   readonly valorSalary: number;
   @IsNumber()
   readonly descricao: string;
-    @IsNumber()
+  @IsNumber()
   readonly percentagem: number;
-    @IsNumber()
+  @IsNumber()
   readonly codigoAnual: number;
 }
