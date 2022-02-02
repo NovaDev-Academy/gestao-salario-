@@ -43,11 +43,6 @@ export class JobsController {
       });
   }
 
-  // @Post()
-  // create(@Body() JOB: JobDTO): Promise<Job> {
-  //   return this.jobservice.create(JOB);
-  // }
-
   @Post()
   create(@JobData() JOB: JobDTO): Promise<Job> {
     return this.jobservice.create(JOB);
@@ -63,3 +58,8 @@ export class JobsController {
     return this.jobservice.delete(id);
   }
 }
+
+/*  @Post()
+  create(@Body() JOB: JobDTO): Promise<Job> {
+    return this.jobservice.create(JOB);
+  }*/
